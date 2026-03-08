@@ -1,0 +1,44 @@
+# ================================================================
+#  Festoes v9.1 — Requirements
+#  Install in Pydroid 3: tap ≡ → Pip → install each package
+# ================================================================
+
+# ── REQUIRED (core functionality) ─────────────────────────────
+numpy                  # Neural networks, vector math, Int8 quantization
+
+# ── STRONGLY RECOMMENDED ──────────────────────────────────────
+plyer                  # Android TTS (text-to-speech), notifications
+                       # Install: pip install plyer
+
+# ── OPTIONAL — Chess skill ────────────────────────────────────
+chess                  # python-chess: local PGN/FEN analysis
+                       # Install: pip install chess
+                       # Without it: Gemini handles chess questions
+
+# ── OPTIONAL — Math skill ─────────────────────────────────────
+sympy                  # Symbolic math (solve equations, calculus)
+                       # Install: pip install sympy
+                       # Without it: built-in AST math solver still works
+
+# ── BUILT-IN (no install needed) ──────────────────────────────
+# tkinter        — UI framework (bundled with Python)
+# sqlite3        — Database (bundled with Python)
+# json           — Data storage (bundled with Python)
+# threading      — Background tasks (bundled with Python)
+# urllib         — HTTP requests / API calls (bundled with Python)
+# ssl            — HTTPS support (bundled with Python)
+# os, shutil     — File system + backups (bundled with Python)
+# datetime, time — Time handling (bundled with Python)
+# re, ast, math  — Text + math processing (bundled with Python)
+# importlib      — Skills plugin loader (bundled with Python)
+
+# ── ANDROID-SPECIFIC (Pydroid 3 built-in) ─────────────────────
+# android        — droid.recognizeSpeech() for voice input
+#                  Already available in Pydroid 3, no install needed
+# sl4a           — SL4A bridge (auto-started by Pydroid 3)
+
+# ── NOT RECOMMENDED (too heavy for Android) ───────────────────
+# sentence-transformers  — 400MB+ RAM, kills Pydroid 3
+# vosk                   — 40MB model download required
+# opencv-python          — 200MB, not needed for current features
+# kivy / flet / kivymd   — Causes jnius crashes in Pydroid 3
