@@ -65,9 +65,9 @@ def speak(text):
 # ================================================================
 #  CONFIG
 # ================================================================
-GEMINI_API_KEY    = "AIzaSyD1aJwf9YeMyBYjDUZ3MoWzbZJh3b5bzX4"
+GEMINI_API_KEY    = ""
 GEMINI_MODEL      = "gemini-2.0-flash"
-WEATHER_API_KEY   = "2540c2dd9d860ddb0ba883ab1d8f2c7d"
+WEATHER_API_KEY   = ""
 DEFAULT_CITY      = "Nairobi"
 WEIGHTS_FILE      = "festoes_v9_weights.npz"
 HISTORY_FILE      = "pybot_history.json"
@@ -79,9 +79,9 @@ CONFIDENCE_THRESHOLD = 0.42  # Whisper-style: below this → go straight to Gemi
 # ── Web Search Keys (v9) ──
 # Google Custom Search — get free key at: console.developers.google.com
 # Create a Custom Search Engine at: cse.google.com → get Search Engine ID
-GOOGLE_SEARCH_API_KEY = "AIzaSyB3EkSg5yZdiQ03ZVdzBsY8RBD-aYWXCTU"
+GOOGLE_SEARCH_API_KEY = ""
 ANTHROPIC_API_KEY = ""  # not used in v9 — placeholder
-GOOGLE_SEARCH_ENGINE_ID = "71d1146494db3491b"
+GOOGLE_SEARCH_ENGINE_ID = ""
 # DuckDuckGo needs no key — works out of the box as fallback
 SETTINGS_FILE     = "pybot_settings.json"
 
