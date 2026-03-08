@@ -1,0 +1,59 @@
+# ================================================================
+#  Festoes Skill: SymPy Advanced Math
+#  Install: pip install sympy
+#  Drop this file in the /skills/ folder — auto-loaded on startup
+# ================================================================
+
+SKILL_NAME = "sympy_math"
+TRIGGERS   = ["integrate", "differentiate", "derivative", "factorise",
+               "factor ", "expand ", "simplify", "limit of", "matrix"]
+
+def handle(text):
+    tl = text.lower().strip()
+    if not any(t in tl for t in TRIGGERS):
+        return None
+    try:
+        import sympy as sp
+        x, y, z, n = sp.symbols('x y z n')
+
+        # Differentiate
+        if "differentiate" in tl or "derivative" in tl:
+            expr_str = tl.replace("differentiate","").replace("derivative of","").replace("derivative","").strip()
+            expr = sp.sympify(expr_str)
+            result = sp.diff(expr, x)
+            return "d/dx [" + str(expr) + "] = " + str(result)
+
+        # Integrate
+        if "integrate" in tl:
+            expr_str = tl.replace("integrate","").strip()
+            expr = sp.sympify(expr_str)
+            result = sp.integrate(expr, x)
+            return "∫ " + str(expr) + " dx = " + str(result) + " + C"
+
+        # Factor
+        if "factor" in tl or "factorise" in tl:
+            expr_str = tl.replace("factorise","").replace("factor","").strip()
+            expr = sp.sympify(expr_str)
+            result = sp.factor(expr)
+            return "factor(" + str(expr) + ") = " + str(result)
+
+        # Simplify
+        if "simplify" in tl:
+            expr_str = tl.replace("simplify","").strip()
+            expr = sp.sympify(expr_str)
+            result = sp.simplify(expr)
+            return "simplify(" + str(expr) + ") = " + str(result)
+
+        # Expand
+        if "expand" in tl:
+            expr_str = tl.replace("expand","").strip()
+            expr = sp.sympify(expr_str)
+            result = sp.expand(expr)
+            return "expand(" + str(expr) + ") = " + str(result)
+
+    except ImportError:
+        return "SymPy not installed. Run: pip install sympy"
+    except Exception as e:
+        return "SymPy error: " + str(e)[:80] + "\nTry: differentiate x**2 + 3*x"
+
+    return None
