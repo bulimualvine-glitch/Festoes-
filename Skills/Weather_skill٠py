@@ -1,0 +1,32 @@
+# ================================================================
+#  Festoes Skill: Extended Weather
+#  Drop this file in the /skills/ folder — auto-loaded on startup
+# ================================================================
+
+SKILL_NAME = "weather_extended"
+TRIGGERS   = ["5 day forecast", "weekly forecast", "week forecast", "tomorrow weather"]
+
+def handle(text):
+    tl = text.lower().strip()
+    if not any(t in tl for t in TRIGGERS):
+        return None
+    try:
+        # Use Festoes cached weather as a base
+        import json, os
+        cache_file = "festoes_weather_cache.json"
+        if os.path.exists(cache_file):
+            with open(cache_file) as f:
+                cache = json.load(f)
+            if cache:
+                city = list(cache.keys())[0]
+                entry = cache[city]
+                return (
+                    "Extended forecast for " + city.capitalize() + ":\n\n"
+                    "Current: " + entry["result"].split("\n")[0] + "\n\n"
+                    "Note: For a full 5-day forecast, ask:\n"
+                    "  'weather in " + city.capitalize() + "'\n"
+                    "Cached at: " + entry.get("timestamp", "unknown")
+                )
+    except:
+        pass
+    return "Could not load extended forecast. Try: weather in Nairobi"
