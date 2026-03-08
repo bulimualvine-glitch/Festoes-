@@ -1,0 +1,70 @@
+# ================================================================
+#  Festoes Skill: Chess Openings Database
+#  Drop this file in the /skills/ folder — auto-loaded on startup
+#  No pip install needed — pure Python
+# ================================================================
+
+SKILL_NAME = "chess_openings"
+TRIGGERS   = ["opening", "what is the", "tell me about the", "explain the"]
+
+OPENINGS = {
+    "sicilian": (
+        "Sicilian Defence (1.e4 c5)\n\n"
+        "The most popular response to 1.e4. Black avoids a symmetrical game "
+        "and fights for the centre with a flank pawn. Leads to sharp, "
+        "unbalanced positions. Main lines: Najdorf, Dragon, Scheveningen, Classical.\n\n"
+        "Famous players: Fischer, Kasparov, Tal all loved the Sicilian."
+    ),
+    "caro-kann": (
+        "Caro-Kann Defence (1.e4 c6)\n\n"
+        "Solid and reliable. Black prepares d5 without weakening the queenside. "
+        "Less dynamic than the Sicilian but very solid. Favoured by positional players.\n\n"
+        "Famous players: Karpov, Petrosian, Anand."
+    ),
+    "kings gambit": (
+        "King's Gambit (1.e4 e5 2.f4)\n\n"
+        "Aggressive Romantic-era opening. White sacrifices a pawn for rapid development "
+        "and an attack on the f-file. Highly tactical — both sides must play precisely.\n\n"
+        "Famous players: Morphy, Spassky, Tal."
+    ),
+    "queens gambit": (
+        "Queen's Gambit (1.d4 d5 2.c4)\n\n"
+        "Not a true gambit — if Black takes, White easily regains the pawn. "
+        "Leads to solid, strategic play. Two main lines: QGA (accepted) and QGD (declined).\n\n"
+        "Famous players: Karpov, Kramnik, Carlsen."
+    ),
+    "ruy lopez": (
+        "Ruy Lopez / Spanish Opening (1.e4 e5 2.Nf3 Nc6 3.Bb5)\n\n"
+        "One of the oldest and most respected openings. White pressures the e5 pawn "
+        "indirectly via the pin on the c6 knight. Enormous theory — played at the highest level.\n\n"
+        "Famous players: Kasparov, Carlsen, Fischer."
+    ),
+    "french": (
+        "French Defence (1.e4 e6)\n\n"
+        "Black immediately prepares d5. Creates a solid pawn chain but can be passive. "
+        "Main lines: Winawer, Classical, Advance, Exchange.\n\n"
+        "Famous players: Korchnoi, Botvinnik, Short."
+    ),
+    "london": (
+        "London System (1.d4 + 2.Nf3 + 3.Bf4)\n\n"
+        "Simple, solid setup for White. Easy to learn, hard to blow up. "
+        "Not the sharpest but very reliable — popular at all levels including top GMs.\n\n"
+        "Famous players: Carlsen uses it regularly."
+    ),
+    "nimzo-indian": (
+        "Nimzo-Indian Defence (1.d4 Nf6 2.c4 e6 3.Nc3 Bb4)\n\n"
+        "Black pins White's knight and fights for the centre. One of the richest openings "
+        "in chess — Black can win the bishop pair or get structural compensation.\n\n"
+        "Famous players: Nimzowitsch, Kasparov, Kramnik."
+    ),
+}
+
+def handle(text):
+    tl = text.lower().strip()
+    if not any(t in tl for t in TRIGGERS):
+        return None
+    for name, description in OPENINGS.items():
+        if name in tl:
+            return description
+    return None
+
